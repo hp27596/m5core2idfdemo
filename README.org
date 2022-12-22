@@ -9,14 +9,14 @@ The library's interface seems to all be working as intended, including: sensors,
 
 Notable stuff:
 
-This has to be included in the main folder's =CMakeLists.txt= if you want to use the M5Unified library. Also your main file needs to be in =.cpp=.
+- This has to be included in the main folder's =CMakeLists.txt= if you want to use the M5Unified library. Also your main file needs to be in =.cpp=.
 #+begin_src
 set(SOURCES main.cpp)
 #+end_src
 
-Freertos tickrate need to be set to 1000 in your =sdkconfig= file. Run =idf.py menuconfig= and set it in Component config -> FreeRTOS -> Tickrate.
+- Freertos tickrate need to be set to 1000 in your =sdkconfig= file. Run =idf.py menuconfig= and set it in Component config -> FreeRTOS -> Tickrate.
 
-This loop is needed to use the library as it's intended. Everything that's using the =M5Unified= interface should be in this loop.
+- This loop is needed for the library to work as it's intended. Everything that's using the =M5Unified= interface should be in this loop.
 #+begin_src cpp
 for (;;) {
     vTaskDelay(1);
