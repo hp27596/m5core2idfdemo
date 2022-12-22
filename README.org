@@ -1,0 +1,25 @@
+#+title: M5Stack Core 2 demo using plain ESP IDF and the M5Unified library
+#+author: Hp
+
+This is a working demo project for the M5Stack Core 2, using plain ESP IDF and the M5Unified library as the main interface.
+
+Tested on =ESP IDF v4.4.2=, as the =M5Unified= library is not updated on ESP IDF v5 yet.
+
+The library's interface seems to all be working as intended, including: sensors, buttons and graphics.
+
+Notable stuff:
+
+This has to be included in the main folder's =CMakeLists.txt= if you want to use the M5Unified library. Also your main file needs to be in =.cpp=.
+#+begin_src
+set(SOURCES main.cpp)
+#+end_src
+
+Freertos tickrate need to be set to 1000 in your =sdkconfig= file. Run =idf.py menuconfig= and set it in Component config -> FreeRTOS -> Tickrate.
+
+This loop is needed to use the library as it's intended. Everything that's using the =M5Unified= interface should be in this loop.
+#+begin_src cpp
+for (;;) {
+    vTaskDelay(1);
+    M5.update();
+}
+#+end_src
