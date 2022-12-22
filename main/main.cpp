@@ -80,7 +80,12 @@ void button_ctrl(void *pvParameter) {
 
 extern "C" void app_main()
 {
-    M5.begin();
+    auto cfg = M5.config();
+    cfg.internal_mic = false;
+    cfg.internal_spk = false;
+    cfg.internal_imu = false;
+    M5.begin(cfg);
+
     vTaskDelay(1000);
 
     M5.Display.fillScreen(BLACK);
